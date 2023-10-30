@@ -2,7 +2,9 @@ package org.anudip.onlineFoodDeliveryApp.controller;
 
 import java.util.List;
 import org.anudip.onlineFoodDeliveryApp.dao.CustomerDao;
+import org.anudip.onlineFoodDeliveryApp.dao.RestaurantDao;
 import org.anudip.onlineFoodDeliveryApp.bean.Customer;
+import org.anudip.onlineFoodDeliveryApp.bean.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,8 +24,8 @@ public class FoodOrderController {
         return new ModelAndView("index");
     }
 
-    @GetMapping("/customer")
-    public ModelAndView showCustomerEntryPage() {
+    @GetMapping("/customerEntry")
+    public ModelAndView showCustomerEntry() {
         ModelAndView mv = new ModelAndView("customerEntry");
         Integer newId = customerDao.generateNewCustomerId();
         Customer customer = new Customer(newId);
@@ -31,44 +33,56 @@ public class FoodOrderController {
         return mv;
     }
 
-    @PostMapping("/customer")
+    @PostMapping("/customerEntry")
     public ModelAndView saveUpdateCustomer(@ModelAttribute("customerRecord") Customer customer) {
-        //Customer newCustomer = service.gstAndTotalFeeCalculation(customer);
         //customerDao.saveCustomer(newCustomer);
         return new ModelAndView("redirect:/index");
     }
-    /*
-    
-    @GetMapping("/customer-report") // Changed from "/customer" to avoid conflicts
-    public ModelAndView showAllCustomerPage() {
-        ModelAndView mv = new ModelAndView("courseReportPage");
-        List<Customer> customerList = customerDao.displayAllCustomer();
-        mv.addObject("customerReport", customerList);
+    // Code for "Restaurant List" page
+    @GetMapping("/restaurantEntry")
+    public ModelAndView showRestaurantEntry() {
+        ModelAndView mv = new ModelAndView("restaurantEntry");
+      // String newId = RestaurantDao.generateNewRestaurantId();
+       // Restaurant restaurant = new Restaurant(newId);
+      //  mv.addObject("restaurantRecord", restaurant);
+        // Adding Of Logic still pending
         return mv;
     }
-
-    @GetMapping("/customer-find")
-    public ModelAndView openCustomerFindPage() {
-        ModelAndView mv = new ModelAndView("customerFindPage");
-        List<Integer> customerIdList = customerDao.getAllCustomerIds();
-        mv.addObject("customerIdList", customerIdList);
-        return mv;
-    }
-
-    @PostMapping("/customer-find")
-    public ModelAndView openCustomerShowUpdatePage(
-        @RequestParam("customer-id") Integer customerId,
-        @RequestParam(required = false, value = "details") String str,
-        @RequestParam(required = false, value = "update") String stg) {
-        
-        String fname = "";
-        if (stg == null)
-            fname = "customerShowPage";
-        else if (str == null)
-            fname = "customerUpdatePage";
-        ModelAndView mv = new ModelAndView(fname);
-        Customer customer = customerDao.findACustomerById(customerId);
-        mv.addObject("customerRecord", customer);
-        return mv;
+  /*  @PostMapping("/restaurantEntry")
+    public ModelAndView saveUpdateRestaurant(@ModelAttribute("restaurantRecord") Restaurant restaurant) {
+        //restaurantDao.saveRestaurant(newRestaurant);
+        return new ModelAndView("redirect:/index");
     }*/
+    
+    // Code for "Restaurant List" page
+    @GetMapping("/restaurantList")
+    public ModelAndView showRestaurantList() {
+        ModelAndView mv = new ModelAndView("restaurantList");
+        // Adding Of Logic still pending
+        return mv;
+    }
+    
+    // Code for "Customer List" page
+    @GetMapping("/customerList")
+    public ModelAndView showCustomerList() {
+        ModelAndView mv = new ModelAndView("customerList");
+        // Adding Of Logic still pending
+        return mv;
+    }
+    
+    // Code for "Bill Paid" page
+    @GetMapping("/billPaid")
+    public ModelAndView showbillPaid() {
+        ModelAndView mv = new ModelAndView("billPaid");
+        // Adding Of Logic still pending
+        return mv;
+    }
+    
+    // Code for "Order Booking" page
+    @GetMapping("/orderBooking")
+    public ModelAndView showorderBooking() {
+        ModelAndView mv = new ModelAndView("orderBooking");
+     // Adding Of Logic still pending
+        return mv;
+    }
 }
