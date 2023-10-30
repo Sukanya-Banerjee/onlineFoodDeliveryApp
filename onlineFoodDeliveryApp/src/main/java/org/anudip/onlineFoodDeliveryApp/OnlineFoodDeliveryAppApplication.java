@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OnlineFoodDeliveryAppApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Hello");
+		System.out.println("Hi");
 		SpringApplication.run(OnlineFoodDeliveryAppApplication.class, args);
 	}
 
